@@ -8,6 +8,7 @@
 
 namespace Arith;
 
+use Aws\CloudFront\Exception\Exception;
 
 class ArithStringUtil
 {
@@ -89,10 +90,12 @@ class ArithStringUtil
   private static function getFromStringDozens($string) {
     if (($number = array_search($string, self::$numbers))!==false)
       return $number * 10;
+
   }
 
   private static function getFromStringTeens($string) {
     if (($number = array_search($string, self::$numbers))!==false)
       return $number + 10;
+
   }
 }
