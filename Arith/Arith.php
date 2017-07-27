@@ -12,11 +12,11 @@ class Arith {
     }
 
     public function add($string) {
-      return $this->getNumericValue();
+      $this->currentvalue += ArithString::fromString($string);
+      return $this->getStringValue();
     }
 
-
-    private function getNumericValue() {
+    private function getStringValue() {
       return ArithString::toString($this->currentvalue);
     }
 

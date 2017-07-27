@@ -1,4 +1,6 @@
 Arith
  [x] Zero
  [x] Init
+ [x] Simple add
+ [x] Teens
 

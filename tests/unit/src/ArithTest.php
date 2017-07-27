@@ -34,10 +34,35 @@ class ArithTest extends PHPUnit_Framework_TestCase
       $k = new Arith\Arith($str);
       $this->assertEquals($str, $k->add("zero"));
     }
-    
+
+  }
+
+  /**
+   * @test
+   */
+
+  public function testSimpleAdd()
+  {
+    $test_strings = ["one"=>"two", "two"=>"four", "five"=>"ten", "six"=>"twelve"];
+    foreach ($test_strings as $str=>$res) {
+      $k = new Arith\Arith($str);
+      $this->assertEquals($res, $k->add($str));
+    }
   }
 
 
+  /**
+   * @test
+   */
+
+  public function testTeens()
+  {
+    $test_strings = ["fourteen","twenty","twenty five"];
+    foreach ($test_strings as $str) {
+      $k = new Arith\Arith($str);
+      $this->assertEquals($str, $k->add("zero"));
+    }
+  }
 
   /**
    * @ test
