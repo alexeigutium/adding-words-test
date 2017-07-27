@@ -25,18 +25,21 @@ class ArithString
     10 => "ten",
     11 => "eleven",
     12 => "twelve",
-    20 => "twenty"
+    20 => "twenty",
+    30 => "thirty",
+    40 => "forty"
   ];
 
   public static function toString($number) {
-    return self::getStringHundreds($number/100) . self::getStringDozens($number%100);
+    return self::getStringHundreds($number) . self::getStringDozens($number%100);
   }
 
   public static function fromString($string) {
     $a = explode(" ",strtolower($string));
     $n = 0;
     foreach ($a as $i) {
-      if (in_array($string, ["hundred", "hundreds"])) {
+
+      if (in_array($i, ["hundred", "hundreds"])) {
         $n *= 100;
       } else
         $n += self::getNumberFromString($i);
@@ -46,8 +49,9 @@ class ArithString
   }
 
   private static function getStringHundreds($number) {
-    if ($number>10)
-      return self::getStringDozens($number)." hundred".(($number % 10 >1) && ($number % 100 != 11)?"s":"");
+    if ($number>100)
+      return self::getStringDozens($number / 100)." hundred".(($number % 100 > 0)?" and ":"");
+    //.(($number % 10 >1) && ($number % 100 != 11)?"s":"")
     return "";
   }
 
