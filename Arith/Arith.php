@@ -1,4 +1,7 @@
 <?php
+
+namespace Arith;
+
 class Arith {
 
     private $currentvalue = 0;
@@ -13,7 +16,7 @@ class Arith {
 
 
     private function getNumericValue() {
-      return $this->currentvalue;
+      return ArithString::toString($this->currentvalue);
     }
 
 }
