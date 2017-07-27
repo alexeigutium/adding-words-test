@@ -1,3 +1,4 @@
 Arith
  [x] Zero
+ [x] Init
 

@@ -23,6 +23,21 @@ class ArithTest extends PHPUnit_Framework_TestCase
 
   }
 
+  /**
+   * @test
+   */
+
+  public function testInit()
+  {
+    $test_strings = ["one","two","five","twelve"];
+    foreach ($test_strings as $str) {
+      $k = new Arith\Arith($str);
+      $this->assertEquals($str, $k->add("zero"));
+    }
+    
+  }
+
+
 
   /**
    * @ test
