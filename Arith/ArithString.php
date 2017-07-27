@@ -31,7 +31,7 @@ class ArithString
   ];
 
   public static function toString($number) {
-    return self::getStringHundreds($number) . self::getStringDozens($number%100);
+    return self::getStringHundreds($number);
   }
 
   public static function fromString($string) {
@@ -49,10 +49,10 @@ class ArithString
   }
 
   private static function getStringHundreds($number) {
-    if ($number>100)
-      return self::getStringDozens($number / 100)." hundred".(($number % 100 > 0)?" and ":"");
+    if ($number>=100)
+      return self::getStringDozens($number / 100)." hundred".(($number % 100 > 0)?" and ".self::getStringDozens($number%100):"");
     //.(($number % 10 >1) && ($number % 100 != 11)?"s":"")
-    return "";
+    return self::getStringDozens($number%100);
   }
 
   private static function getStringDozens($number) {
