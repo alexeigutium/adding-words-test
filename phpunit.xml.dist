@@ -1,0 +1,24 @@
+<phpUnit
+  colors="true"
+  report-useless-tests        = "true"
+  strict-coverage             = "true"
+  disallow-test-output        = "true"
+  verbose="true"
+  debug="true"
+  bootstrap="tests/unit/bootstrap.php">
+
+  <testsuites>
+    <testsuite name="Arith">
+      <directory>tests/unit</directory>
+    </testsuite>
+  </testsuites>
+
+  <logging>
+    <log type="testdox-text" target="tests/unit/testdox.txt"/>
+  </logging>
+
+  <php>
+    <ini name="display_errors" value="true"/>
+  </php>
+
+</phpUnit>
