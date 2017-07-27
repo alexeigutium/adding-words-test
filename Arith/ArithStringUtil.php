@@ -8,8 +8,6 @@
 
 namespace Arith;
 
-use Aws\CloudFront\Exception\Exception;
-
 class ArithStringUtil
 {
   private static $numbers = [
@@ -28,7 +26,8 @@ class ArithStringUtil
     12 => "twelve",
     20 => "twenty",
     30 => "thirty",
-    40 => "forty"
+    40 => "forty",
+    80 => "eighty"
   ];
 
   public static function toString($number) {
