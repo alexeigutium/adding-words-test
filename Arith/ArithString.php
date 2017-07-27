@@ -38,29 +38,39 @@ class ArithString
     $a = explode(" ",strtolower($string));
     $n = 0;
     foreach ($a as $i) {
-
-      if (in_array($i, ["hundred", "hundreds"])) {
-        $n *= 100;
-      } else
-        $n += self::getNumberFromString($i);
+      $n = self::findAndExecuteRuleForWord($n, $i);
     }
 
     return $n;
   }
 
-  private static function getStringHundreds($number) {
-    if ($number>=100)
-      return self::getStringDozens($number / 100)." hundred".(($number % 100 > 0)?" and ".self::getStringDozens($number%100):"");
-    //.(($number % 10 >1) && ($number % 100 != 11)?"s":"")
-    return self::getStringDozens($number%100);
+  private static function findAndExecuteRuleForWord($n, $string) {
+
+    if (in_array($string, ["hundred", "hundreds"])) {
+      return $n * 100;
+    } else
+      return $n + self::getNumberFromString($string);
   }
 
-  private static function getStringDozens($number) {
+  private static function getStringHundreds($number) {
+    if ($number>=100)
+      return self::findStringRuleForDozens($number / 100)." hundred".(($number % 100 > 0)?" and ".self::findStringRuleForDozens($number%100):"");
+    //.(($number % 10 >1) && ($number % 100 != 11)?"s":"")
+    return self::findStringRuleForDozens($number%100);
+  }
+
+  private static function findStringRuleForDozens($number) {
     if (isset(self::$numbers[$number]))
       return self::$numbers[$number];
     if ($number<20)
-      return self::getStringDozens($number - 10)."teen";
-    return (isset(self::$numbers[self::getD10($number)*10])?(self::$numbers[self::getD10($number)*10]):self::getStringDozens($number/10)."ty").(($number % 10)?" ".self::getStringDozens($number % 10):"");
+      return self::findStringRuleForDozens($number - 10)."teen";
+    return self::getStringForDozens($number);
+  }
+
+  private static function getStringForDozens($number) {
+    return (isset(self::$numbers[self::getD10($number)*10])
+        ?(self::$numbers[self::getD10($number)*10])
+      :self::findStringRuleForDozens(self::getD10($number))."ty").(($number % 10)?" ".self::findStringRuleForDozens($number % 10):"");
   }
 
   private static function getD10($number) {
