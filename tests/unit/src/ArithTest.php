@@ -7,7 +7,7 @@
  */
 
 include_once("Arith/Arith.php");
-include_once("Arith/ArithString.php");
+include_once("Arith/ArithStringUtil.php");
 
 class ArithTest extends PHPUnit_Framework_TestCase
 {
@@ -76,6 +76,9 @@ class ArithTest extends PHPUnit_Framework_TestCase
     $this->assertEquals("three", $k->add("zero"));
     $this->assertEquals("three hundred and forty three", $k->add("three hundred and forty"));
     $this->assertEquals("one hundred", $k->add("ninety seven"));
+    $this->assertEquals("fivety one", $k->add("forty eight"));
+    $this->assertEquals("three hundred and three", $k->add("three hundred"));
+    $this->assertEquals("four hundred and two", $k->add("three hundred and ninety nine"));
   }
 
 }
